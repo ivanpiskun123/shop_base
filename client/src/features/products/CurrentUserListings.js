@@ -35,10 +35,9 @@ function CurrentUserListings() {
 					{listings.length !== 0 ? (
 						listings
 					) : (
-						<h2>
-							<Spinner animation="border" />
-							Loading..
-						</h2>
+						<h3>
+							No listings
+						</h3>
 					)}
 				</div>
 			</Stack>

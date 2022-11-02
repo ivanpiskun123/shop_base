@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :images, only: [:index]
   resources :carts
   resources :products
+  resources :categories, only: [:index]
   resources :users
   #Custom routes
   get "sessions/create"

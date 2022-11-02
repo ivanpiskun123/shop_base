@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    byebug
     product = Product.new(product_params)
     if (product.save)
       current_user = User.find(session[:user_id])

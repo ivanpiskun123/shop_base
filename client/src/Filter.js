@@ -1,6 +1,8 @@
 import { Form } from "react-bootstrap"
 import { productFiltered } from "./features/products/productsSlice"
 import { useDispatch } from "react-redux"
+import CategoriesService from "./API/CategoriesService";
+import React, {useEffect, useState} from "react";
 
 function Filter() {
 	const dispatch = useDispatch()
@@ -11,13 +13,33 @@ function Filter() {
 				dispatch(productFiltered(data))
 			})
 	}
+	const [categories, setCategories] = useState([]);
+
+	const fetchCategories = async () => {
+		try {
+			const response = await CategoriesService.getAll();
+			console.log(response.data)
+			setCategories(response.data)
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
+	useEffect( ()=>{
+			fetchCategories();
+		}
+		,[] )
+
+
 	return (
 		<Form.Select aria-label="Default select example" onChange={handleChange}>
-			<option value="0">Open this select menu</option>
-			<option value="1">Clothing</option>
-			<option value="2">Decor</option>
-			<option value="3">Stationary</option>
-			<option value="4">Technology</option>
+			<option disabled value="" selected>Select category</option>
+			{categories.map( (n) => (
+				<option key={n.id} value={n.id}>
+					{n.name}
+				</option>
+			))
+			}
 		</Form.Select>
 	)
 }

@@ -205,3 +205,8 @@ button:disabled {
 		min-width: initial;
 	}
 }
+
+body {
+	background: rgb(28,9,108);
+	background: linear-gradient(0deg, rgba(28,9,108,0.317266281512605) 0%, rgba(255,255,255,1) 100%);
+}

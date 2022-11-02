@@ -10,9 +10,19 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :username, :password, presence: true, on: :create
   validates_uniqueness_of :username, :email
 
+  before_validation :set_username, on: :create
+
+
   private
 
   def assign_default_role
     self.add_role(:buyer) if self.roles.blank?
   end
+
+  def set_username
+    if username.blank?
+      self.username = first_name+"_"+last_name
+    end
+  end
+
 end

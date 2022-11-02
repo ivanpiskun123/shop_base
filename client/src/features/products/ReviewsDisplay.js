@@ -23,7 +23,7 @@ function ReviewsDisplay({ review }) {
 						/>
 						<h4 style={{ color: "#797EF6" }}>{review.user.username}</h4>{" "}
 						<span>- {timestamp}</span> <br></br>
-						<p>{review.review_body}</p>
+						<b><p>{review.review_body}</p></b>
 					</div>
 				</>
 			)}{" "}

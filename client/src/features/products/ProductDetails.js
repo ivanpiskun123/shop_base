@@ -109,9 +109,10 @@ function ProductDetails({ currentUser }) {
 						</Col>
 
 						<Col sm={4} style={{ marginTop: "50px" }}>
+							<Col style={{display: 'flex',  justifyContent:'right', alignItems:'right' }}>
 							{seller !== null && product.user_id === currentUser.id ? (
 								<i style={{ color: "black" }}>
-									Edit Listing{" "}
+									Edit product {" "}
 									<AiFillEdit
 										onClick={handleEdit}
 										style={{ cursor: "pointer" }}
@@ -125,12 +126,9 @@ function ProductDetails({ currentUser }) {
 											? "Deactivate Listing"
 											: "Activate Listing"}
 									</p>
-									{/* <AiFillDelete
-										style={{ cursor: "pointer" }}
-										onClick={() => handleDelete(product.id)}
-									/> */}
 								</i>
 							) : null}
+							</Col>
 							{edit === false ? (
 								<>
 									<h1>{product.name}</h1>
@@ -147,6 +145,7 @@ function ProductDetails({ currentUser }) {
 									<b style={{ color: "purple" }}>
 										Sold by: {product.owner.username}
 									</b>
+									<p></p>
 									{(product !== null && product.quantity === 0) ||
 									(currentUser !== null &&
 										product.user_id === currentUser.id) ? (
@@ -172,11 +171,11 @@ function ProductDetails({ currentUser }) {
 					</Row>
 
 					<Row style={{ marginTop: "25px" }}>
-						<Col>
+						<Col sm={7} >
 							{currentUser !== null && (
 								<FloatingLabel
 									controlId="floatingTextarea"
-									label="Comments"
+									label="Leave a comment here"
 									className="mb-3"
 								>
 									<Form.Control

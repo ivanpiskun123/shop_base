@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, {useEffect, useState} from "react"
 import {
 	Container,
 	Form,
@@ -10,9 +10,12 @@ import {
 import Images from "../images/Images"
 import { useNavigate } from "react-router-dom"
 import ImagesPreview from "../images/ImagesPreview"
+import CategoriesService from "../../API/CategoriesService";
 
 function AddProduct({ currentUser }) {
 	const navigate = useNavigate()
+	const [categories, setCategories] = useState([]);
+
 	const [product, setProduct] = useState({
 		name: "",
 		price: null,
@@ -33,8 +36,26 @@ function AddProduct({ currentUser }) {
 		})
 	}
 
+	const fetchCategories = async () => {
+		try {
+			const response = await CategoriesService.getAll();
+			console.log(response.data)
+			setCategories(response.data)
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
+	useEffect( ()=>{
+			fetchCategories();
+		}
+		,[] )
+
 	function handleProductAdd(e) {
 		e.preventDefault()
+
+		console.log(product["images"])
+
 		fetch("/products", {
 			method: "post",
 			headers: {
@@ -52,6 +73,7 @@ function AddProduct({ currentUser }) {
 			})
 	}
 	function handleChange(e) {
+		console.log(e.target.value)
 		if (e.target.name === "category_id") {
 			setProduct({ ...product, [e.target.name]: parseInt(e.target.value) })
 		} else {
@@ -146,11 +168,13 @@ function AddProduct({ currentUser }) {
 								name="category_id"
 								onChange={handleChange}
 							>
-								<option>Select category</option>
-								<option value="1">Clothing</option>
-								<option value="2">Decor</option>
-								<option value="3">Stationary</option>
-								<option value="4">Technology</option>
+								<option disabled value="" selected>Select category</option>
+								{categories.map( (n) => (
+									<option key={n.id} value={n.id}>
+										{n.name}
+									</option>
+								))
+								}
 							</Form.Select>
 
 							<Images handleImages={handleImages} />

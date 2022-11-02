@@ -15,8 +15,9 @@ function Sold() {
 			})
 	}, [])
 	return (
-		<Container style={{ marginTop: "75px" }}>
-			<h1 style={{ textAlign: "center" }}>SOLD ORDERS</h1>
+		<Container style={{ marginTop: "100px" }}>
+			<h3 style={{ textAlign: "center" }}>SOLD ORDERS</h3>
+			<hr></hr>
 			<SoldProductsDisplay />
 		</Container>
 	)

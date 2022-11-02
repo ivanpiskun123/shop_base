@@ -19,6 +19,7 @@ import Checkout from "./features/cart/Checkout"
 import Footer from "./Footer"
 import StripeContainer from "./features/cart/StripeContainer"
 import Order from "./features/orders/Order"
+import {productAdded} from "./features/products/productsSlice";
 
 function App() {
 	const currentUser = useSelector((state) => state.currentUser.entities)
@@ -42,6 +43,7 @@ function App() {
 	}
 	const [currentProduct, setCurrentProduct] = useState(null)
 	useEffect(() => {
+
 		fetch("/me").then((r) => {
 			if (r.ok) {
 				r.json().then((user) => dispatch(currentUserAdded(user)))

@@ -20,18 +20,14 @@ function NavbarDisplay() {
 	}
 
 	return (
-		<Navbar collapseOnSelect fixed="top" expand="sm" bg="dark" variant="dark">
+		<Navbar collapseOnSelect fixed="top" expand="sm" variant="dark" style={{backgroundColor: "#4d417a"}}>
 			<Container>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
 				<Navbar.Collapse id="responsive-navbar-nav">
-					<Navbar.Brand href="/">Shoppaige</Navbar.Brand>
+					<Navbar.Brand href="/">Shop</Navbar.Brand>
+
 					<Nav className="me-auto" collapseOnSelect fixed="top" expand="sm">
-						{currentUser !== null || currentUser === {} ? (
-							<Nav.Link onClick={handleSignout}>Signout</Nav.Link>
-						) : (
-							<Nav.Link href="/signin">Signin</Nav.Link>
-						)}
 						{currentUser !== null && (
 							<>
 								<NavDropdown
@@ -59,9 +55,13 @@ function NavbarDisplay() {
 								</NavDropdown>
 							</>
 						)}
+						<Nav.Link href="/"  style={{ color: '#FFF' }}>Products</Nav.Link>
 					</Nav>
+
 					<Nav>
+
 						<Navbar.Collapse className="justify-content-end">
+
 							{currentUser !== null && (
 								<>
 									<img
@@ -81,6 +81,7 @@ function NavbarDisplay() {
 									</Navbar.Text>
 								</>
 							)}
+
 						</Navbar.Collapse>
 
 						<Nav.Link
@@ -94,7 +95,14 @@ function NavbarDisplay() {
 							>
 								<ShoppingCartIcon style={{ color: "white" }} />{" "}
 							</Badge>
+
 						</Nav.Link>
+
+						{currentUser !== null || currentUser === {} ? (
+							<Nav.Link onClick={handleSignout}>Signout</Nav.Link>
+						) : (
+							<Nav.Link  href="/signin" style={{ color: '#FFF' }} > Signin</Nav.Link>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

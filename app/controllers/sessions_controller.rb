@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       move_cart_products_guest_to_user(user)
       if (!session[:cart_id])
         cart = Cart.find_by(user_id: user.id)
-        session[:cart_id] = cart.id
+        session[:cart_id] = cart&.id
       end
       render json: user, status: :created
     else

@@ -13,6 +13,7 @@ function OrdersDisplay() {
 	return (
 		<div>
 			<h2 style={{ textAlign: "center" }}>My Orders</h2>
+			<hr></hr>
 			{orders && orders.length !== 0 ? (
 				list
 			) : (

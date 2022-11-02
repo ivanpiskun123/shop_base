@@ -27,7 +27,8 @@ function Signin() {
 					dispatch(currentUserAdded(user))
 					setEmail("")
 					setPassword("")
-					navigate("/")
+					window.location.reload(false);
+					window.location.replace("/");
 				})
 			} else {
 				r.json().then((err) => setErrors(err.errors))
@@ -36,14 +37,14 @@ function Signin() {
 	}
 	// console.log(errors)
 	return (
-		<Container style={{ marginTop: "75px" }}>
+		<Container style={{ marginTop: "175px" }}>
 			<Row className="justify-content-md-center">
 				{errors.map((err) => (
 					<Alert variant="danger">{err}</Alert>
 				))}
-				<Col xs sm={7}>
-					<Form onSubmit={handleSignin}>
-						<h3>Signin</h3>
+				<Col xs sm={4}>
+					<Form onSubmit={handleSignin} >
+						<h3 style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Signin</h3>
 						<Form.Group className="mb-3" controlId="formBasicEmail">
 							<Form.Label>Email address</Form.Label>
 							<Form.Control
@@ -68,11 +69,13 @@ function Signin() {
 							<button
 								type="submit"
 								size="lg"
-								className="btn btn-dark btn-lg btn-block"
+								className="btn btn-lg btn-block"
+								style={{backgroundColor:"#36286f", color: "white"}}
 							>
 								Signin
 							</button>
 						</div>
+						<hr></hr>
 						<p className="forgot-password text-right">
 							Don't have an account? <a href="/signup">create an account</a>
 						</p>

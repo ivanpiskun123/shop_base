@@ -87,12 +87,12 @@ function Cart({ currentUser, cartData }) {
 					),
 					amount: <strong>${row.item_quantity * row.product.price}</strong>,
 					button: (
-						<MDBTooltip placement="top">
+						<MDBBtn placement="top">
 							<MDBBtn color="primary" size="sm" onClick={handleProductDelete}>
 								X
 							</MDBBtn>
 							<div>Remove item</div>
-						</MDBTooltip>
+						</MDBBtn>
 					),
 				})
 			})
@@ -106,13 +106,14 @@ function Cart({ currentUser, cartData }) {
 			cartData === null ||
 			cartData.total_amount === 0 ? (
 				<>
-					<h1 style={{ marginTop: "100px" }}>
+					<br></br>
+					<h3 style={{ marginTop: "100px" }}>
 						<Alert key="idx" variant="primary">
 							Cart is empty, Please add a product
 						</Alert>
-					</h1>{" "}
+					</h3>{" "}
 					<Nav.Link href="/">
-						<BsFillArrowLeftCircleFill />
+						<BsFillArrowLeftCircleFill className="mr-2"/>
 						back to shopping
 					</Nav.Link>
 				</>
@@ -131,7 +132,7 @@ function Cart({ currentUser, cartData }) {
 								</MDBTable>
 								<Row className="justify-content-md-center">
 									<Col xs lg="7">
-										{cartData && <h3>Total:- ${cartData.total_amount}</h3>}
+										{cartData && <h3>Total: ${cartData.total_amount}</h3>}
 										<Nav.Link href="/checkout">
 											<button>
 												{currentUser

@@ -9,6 +9,9 @@ const Searchbar = ({ search, setSearch }) => {
 				<Col sm={4}>
 					<Filter />
 				</Col>
+				<Col sm={4}>
+
+				</Col>
 				<Col>
 					<input
 						className="form-control"
@@ -20,6 +23,7 @@ const Searchbar = ({ search, setSearch }) => {
 					/>
 				</Col>
 			</Row>
+			<hr/>
 		</Container>
 	)
 }
