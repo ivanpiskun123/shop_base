@@ -25,6 +25,9 @@ module ReactRailsApiProjectTemplate
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use Rack::MethodOverride
+
     # Use SameSite=Strict for all cookies to help protect against CSRF
     # https://owasp.org/www-community/SameSite
     config.action_dispatch.cookies_same_site_protection = :strict
@@ -38,7 +41,7 @@ module ReactRailsApiProjectTemplate
         ENV[key.to_s] = value
       end if File.exists?(env_file)
     end
-    
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

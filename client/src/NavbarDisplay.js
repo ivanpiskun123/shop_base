@@ -52,6 +52,14 @@ function NavbarDisplay() {
 											</NavDropdown.Item>
 										</>
 									)}
+
+									{currentUser.roles.find((role) => role.name == "admin") && (
+										<>
+											<NavDropdown.Item href="http://localhost:3000/admin/" target="_blank">
+												Administration
+											</NavDropdown.Item>
+										</>
+									)}
 								</NavDropdown>
 							</>
 						)}

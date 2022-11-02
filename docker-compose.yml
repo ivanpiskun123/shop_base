@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6-alpine
+    environment:
+      POSTGRES_DB: "shop_dev_db"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  web:
+    container_name: shop_server
+    build:
+      context: .
+      dockerfile: Dockerfile_server
+    command: bash -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # command: bash -c "gem install nokogiri --platform=ruby && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+  sample:
+    container_name: shop_client
+    build:
+      context: .
+      dockerfile: Dockerfile_client
+    command: npm start --prefix client
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 4000:4000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
